@@ -11,6 +11,10 @@ View(coronavirus)
 # Exercise 1
 
 coronavirus %/%
+  filter(type == "death", country == "US" | country == "Canada" | country == "Mexico") %>%
+  select(country,data,cases)
+
+coronavirus %/%
   filter(type == "death", country %in% c("US","Canada","Mexico")) %>%
   select(country,data,cases)
 
@@ -28,18 +32,36 @@ max(vacc$date)
 vacc %>%
   filter(date == max(vacc$date)) %>%
   select(country_region:people_fully_vaccinated, population) %>%
-  mutate(vaxx_rate = people_fully_vaccinated / population, 1)
-# mutate(vaxx_rate = people_fully_vaccinated / population, 2)
+  mutate(vaxx_rate = round(people_fully_vaccinated / population, 1))
+# mutate(vaxx_rate = round(people_fully_vaccinated / population, 2))
+
+vacc_doses <- vacc %>%
+  filter(date == max(vacc$date)) %>%
+  select(country_region:people_fully_vaccinated, population) %>%
+  mutate(doses_full = doses_admin / people_fully_vaccinated) %>%
+  filter(!is.na(doses_full)) %>%
+  filter(doses_full > 5)
+
+ggplot(vacc_doses) +
+  geom_histogram(mapping = aes(x = doses_full))
+
+vacc_doses <- vacc %>%
+  filter(date == max(vacc$date)) %>%
+  select(country_region:people_fully_vaccinated, population) %>%
+  mutate(doses_full = doses_admin / people_fully_vaccinated) %>%
+  filter(!is.na(doses_full)) %>%
+  arrange(-doses_full)
+
+ggplot(vacc_doses) +
+  geom_histogram(mapping = aes(x = doses_full))
 
 vacc %>%
   filter(date == max(vacc$date)) %>%
   select(country_region:people_fully_vaccinated, population) %>%
-  mutate(doses_full = doses_admin / people_fully_vaccinated) %>%
-  View()
-  filter(!is.na(doses_full)) %>%
-  View()
+  mutate(vaxx_rate = people_fully_vaccinated / population) %>%
+  filter(vaxx_rate > 0.8) %>%
+  arrange(-vaxx_rate)
 
-  
 vacc_rate <- vacc %>%
   filter(date == max(vacc$date)) %>%
   select(country_region:people_fully_vaccinated, population) %>%
@@ -57,6 +79,7 @@ coronavirus %>%
   filter(type == "confirmed") %>%
   group_by(country) %>%
   summarize(n=n())
+#n represents how many roles I have for each country
 
 coronavirus %>%
   group_by(country, type) %>%
