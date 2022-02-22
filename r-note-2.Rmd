@@ -1,0 +1,36 @@
+---
+title: "r-note-2"
+author: "Lei"
+date: "2/22/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load the packages
+```{r}
+library(tidyverse)
+library(knitr)
+```
+
+# Load thte data
+```{r}
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
+
+max(coronavirus$date)
+
+coronavirus
+```
+
+# Glocal daily counts
+```{r}
+coronavirus %>% 
+  filter(type == "confirmed") %>% 
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases)) %>% 
+  ggplot(mapping = aes(x = date, y = total_cases)) +
+  geom_line()
+```
+
