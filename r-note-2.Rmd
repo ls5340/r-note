@@ -15,16 +15,16 @@ library(tidyverse)
 library(knitr)
 ```
 
-# Load thte data
+# Load the data
 ```{r}
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
 max(coronavirus$date)
 
-coronavirus
+coronavirus 
 ```
 
-# Glocal daily counts
+# Global daily counts
 ```{r}
 coronavirus %>% 
   filter(type == "confirmed") %>% 
@@ -33,4 +33,77 @@ coronavirus %>%
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()
 ```
+```{r}
+library(tidyverse)
+library(dplyr)
+gg_base <-coronavirus %>% 
+  filter(type == "confirmed") %>% 
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases)) %>% 
+  ggplot(mapping = aes(x = date, y = total_cases))
 
+gg_base +
+  geom_point()
+```
+
+```{r}
+coronavirus %>% 
+  filter(type == "confirmed") %>% 
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases)) %>% 
+  ggplot(mapping = aes(x = date, y = total_cases))
+
+gg_base +
+  geom_line()
+```
+
+```{r}
+coronavirus %>% 
+  filter(type == "confirmed") %>% 
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases)) %>% 
+  ggplot(mapping = aes(x = date, y = total_cases))
+
+gg_base +
+  geom_col(color = "red")
+```
+```{r}
+coronavirus %>% 
+  filter(type == "confirmed") %>% 
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases)) %>% 
+  ggplot(mapping = aes(x = date, y = total_cases))
+
+gg_base +
+  geom_col(color = "purple", linetype = "dashed")
+
+gg_base +
+  geom_col(color = "purple", shape = 17, size = 4, alpha = 0.5)
+
+gg_base +
+  geom_point(aes(size = total_cases, color = total_cases), alpha = 0.5) + 
+  theme_minimal() +
+  theme(legend.position = c(0,1))
+
+gg_base +
+  geom_point(aes(size = total_cases, color = total_cases), alpha = 0.5) + 
+  theme_minimal() +
+  labs(x = "Date", y = "Total confirmed cases", title = "Daily counts of confirmed cases", subtitle = "Global cums")
+```
+
+```{r}
+coronavirus %>% 
+  filter(type == "confirmed", country %in% c("US", "Canada", "Mexico")) %>% 
+  group_by(country) %>% 
+  summarize(cases = sum(cases)) %>% 
+  ggplot() + 
+  geom_col(aes(x = country, y = cases), fill = "red")
+```
+```{r}
+coronavirus %>% 
+  filter(type %in% c("confirmed", "death"), country %in% c("US", "Canada", "Mexico")) %>% 
+  group_by(country,type) %>% 
+  summarize(cases = sum(cases)) %>% 
+  ggplot() + 
+  geom_col(aes(x = country, y = cases, fill = type), position = "fill")
+```

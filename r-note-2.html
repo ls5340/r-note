@@ -184,19 +184,11 @@ pre code {
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(knitr)</code></pre>
 </div>
-<div id="load-thte-data" class="section level1">
-<h1>Load thte data</h1>
-<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
-<pre><code>## Rows: 637794 Columns: 15</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr  (8): province, country, type, iso2, iso3, combined_key, continent_name,...
-## dbl  (6): lat, long, cases, uid, code3, population
-## date (1): date</code></pre>
-<pre><code>## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>max(coronavirus$date)</code></pre>
+<div id="load-the-data" class="section level1">
+<h1>Load the data</h1>
+<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)
+
+max(coronavirus$date)</code></pre>
 <pre><code>## [1] &quot;2022-02-21&quot;</code></pre>
 <pre class="r"><code>coronavirus</code></pre>
 <pre><code>## # A tibble: 637,794 × 15
