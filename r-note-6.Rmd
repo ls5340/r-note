@@ -1,0 +1,31 @@
+---
+title: "r-note-6"
+author: "Lei"
+date: "3/10/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+## R Markdown
+library(knitr)
+library(tidyverse)
+library(tidyr)
+library(dplyr)
+
+lotr <- read_csv(lotr <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv"))
+#View(lotr)
+```
+
+```{r}
+(lotr %>% 
+  ggplot() +
+  geom_col(mapping = aes(x = Film, y = Words, fill = Race)) ) 
+ggsave(lotr, filename = "~/Home/NTRES6100 r note/data/wordcount.png")
+```
+
+
+

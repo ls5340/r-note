@@ -19,5 +19,5 @@ plot <- coronavirus %>%
   summarize(total_cases = sum(cases)) %>% 
   ggplot() +
   geom_line(aes(date,total_cases))
-ggsave(plot, filename = "~/Home/NTRES6100 r note/data/totalcounuts.jpg") 
-#ggsave(plot, filename = "~/Home/NTRES6100 r note/data/totalcounuts.png") 
+ggsave(plot, filename = "~/Home/NTRES6100 r note/data/totalcounts.jpg") 
+#ggsave(plot, filename = "~/Home/NTRES6100 r note/data/totalcounts.png") 
