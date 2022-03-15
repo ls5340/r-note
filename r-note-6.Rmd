@@ -18,10 +18,10 @@ lotr <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/dat
 
 ```{r}
 library(tidyverse)
-(lotr %>% 
+lotr %>% 
   ggplot() +
-  geom_col(mapping = aes(x = Film, y = Words, fill = Race)) ) 
-ggsave(lotr, filename = "~/Home/NTRES6100 r note/data/wordcounts.png")
+  geom_col(mapping = aes(x = Film, y = Words, fill = Race)) 
+ggsave(filename = "data/wordcounts.png")
 ```
 
 
