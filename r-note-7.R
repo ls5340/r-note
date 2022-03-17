@@ -57,7 +57,19 @@ ggsave(filename = str_c("~/Home/NTRES6100 r note/data/", cntry, "_gdp_per_cap.pn
 
 ---
 
+dir.create("figures")
+
+cntry <- "Afghanistan"
 country_list <- c("Albania", " Canada", "Spain")
+#country_list <- unique(gapminder$country)
+#length(country_list)
+
+gap_europe <- gapminder %>% 
+  filter(continent = "Europe") %>% 
+  mutate(gdp_tot = gdp_per_cap * pop)
+
+country_list <-  unique(gap_europe$country)
+
 for (cntry in country_list) {
   gap_to_plot <- gapminder %>% 
     filter(country == cntry)
@@ -68,3 +80,11 @@ for (cntry in country_list) {
   
   ggsave(filename = str_c("~/Home/NTRES6100 r note/data/", cntry, "_gdp_per_cap.png", sep = ""), plot = my_plot)}
 
+for (i in seq(10)) {
+  print(str_c("Part_", i, sep = ""))
+}
+for (i in seq_len(10)) {
+  print(str_c("Part_", i, sep = ""))
+}
+
+#for (i in 1:10)}
