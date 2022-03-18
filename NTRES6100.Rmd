@@ -1,0 +1,76 @@
+
+# italic 
+<hr>
+*lufthansa*
+
+<br>
+
+# bold 
+<hr>
+**lufthansa**
+
+<br>
+
+# italic and bold 
+<hr>
+***lufthansa***
+
+<br>
+
+# without blank, without change (1)
+<hr>
+-lufthansa
+<br>
+*lufthansa
+
+<br>
+
+# without blank, without change (2)
+<hr>
+--lufthansa
+<br>
+**lufthansa
+
+<br>
+
+# without blank, without change (3)
+<hr>
+---lufthansa
+<br>
+***lufthansa
+
+<br>
+
+# with blank, with change (1)
+<hr>
+- lufthansa
+<br>
+* lufthansa
+
+<br>
+
+# with blank, with change (2)
+<hr>
+-- lufthansa
+<br>
+** lufthansa
+
+<br>
+
+# with blank, with change (3)
+<hr>
+--- lufthansa
+<br>
+*** lufthansa
+
+<br>
+
+# lufthansa
+
+<br>
+
+## lufthansa
+
+<br>
+
+### lufthansa
