@@ -232,6 +232,136 @@ pre code {
 <p><br></p>
 <div id="lufthansa-2" class="section level3">
 <h3>lufthansa</h3>
+<pre class="r"><code># range in R
+x=c(5,2,7,9,4)
+range(x)</code></pre>
+<pre><code>## [1] 2 9</code></pre>
+<pre class="r"><code>#[1] 2 9
+
+# range in R - the NA issue
+x=c(5,2,NA,9,4)
+range(x,na.rm=FALSE)</code></pre>
+<pre><code>## [1] NA NA</code></pre>
+<pre class="r"><code>#[1] NA NA
+
+# range in r - using na.rm to clean up results 
+range(x,na.rm=TRUE)</code></pre>
+<pre><code>## [1] 2 9</code></pre>
+<pre class="r"><code>#[1] 2 9
+
+# range in R - vectors with alphabetical data
+x=c(&quot;c&quot;,&quot;r&quot;,&quot;e&quot;,&quot;a&quot;,&quot;g&quot;,&quot;e&quot;,&quot;r&quot;)
+range(x)</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;r&quot;</code></pre>
+<pre class="r"><code>#[1] &quot;a&quot; &quot;r&quot;</code></pre>
+<pre class="r"><code>x &lt;- 1:10
+y &lt;- 11:20
+z &lt;- NULL
+system.time(for (i in 1:length(x)){
+  z &lt;- c(z, x[i] + y[i])
+})</code></pre>
+<pre><code>##    user  system elapsed 
+##   0.039   0.002   0.042</code></pre>
+<pre class="r"><code>z </code></pre>
+<pre><code>##  [1] 12 14 16 18 20 22 24 26 28 30</code></pre>
+<pre class="r"><code>x &lt;- 1:10
+y &lt;- 11:20
+z &lt;- NULL
+system.time(for (i in seq_along(x)) {
+  z &lt;- c(z, x[i] + y[i])
+})</code></pre>
+<pre><code>##    user  system elapsed 
+##   0.004   0.000   0.005</code></pre>
+<pre class="r"><code>z </code></pre>
+<pre><code>##  [1] 12 14 16 18 20 22 24 26 28 30</code></pre>
+<pre class="r"><code>x &lt;- 1:10
+y &lt;- 11:20
+z &lt;- NULL
+system.time(for (i in range(x)) {
+  z &lt;- c(z, x[i] + y[i])
+})</code></pre>
+<pre><code>##    user  system elapsed 
+##   0.007   0.000   0.007</code></pre>
+<pre class="r"><code>z </code></pre>
+<pre><code>## [1] 12 30</code></pre>
+<pre class="r"><code>x &lt;- 1:10
+y &lt;- 11:20
+z &lt;- vector(length=10)
+system.time(for (i in 1:length(x)){
+  z[i] &lt;- x[i] + y[i]
+})</code></pre>
+<pre><code>##    user  system elapsed 
+##   0.009   0.000   0.010</code></pre>
+<pre class="r"><code>z</code></pre>
+<pre><code>##  [1] 12 14 16 18 20 22 24 26 28 30</code></pre>
+<pre class="r"><code>x &lt;- 1:10
+y &lt;- 11:20
+z &lt;- vector(mode = &quot;double&quot;, length=10)
+system.time(for (i in 1:length(x)){
+  z[i] &lt;- x[i] + y[i]
+})</code></pre>
+<pre><code>##    user  system elapsed 
+##   0.010   0.000   0.012</code></pre>
+<pre class="r"><code>z</code></pre>
+<pre><code>##  [1] 12 14 16 18 20 22 24 26 28 30</code></pre>
+<pre class="r"><code>#certain
+for (i in 1:10) {
+  print(i)
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10</code></pre>
+<pre class="r"><code>#uncertain
+i &lt;- 1
+while(i&lt;=10) {
+  print(i)
+  i &lt;- i + 1
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10</code></pre>
+<pre class="r"><code>x &lt;- 0
+i &lt;- 0
+while (x &lt; 2) {
+  x &lt;- rnorm(1,0,1)
+  i &lt;- i + 1
+}
+print(x)</code></pre>
+<pre><code>## [1] 2.322</code></pre>
+<pre class="r"><code>print(i)</code></pre>
+<pre><code>## [1] 35</code></pre>
+<pre class="r"><code>sort(c (3, 1, 2, 5, 4, 2), decreasing = FALSE)</code></pre>
+<pre><code>## [1] 1 2 2 3 4 5</code></pre>
+<pre class="r"><code>sort(c (3, 1, 2, 5, 4, 2), decreasing = TRUE)</code></pre>
+<pre><code>## [1] 5 4 3 2 2 1</code></pre>
+<pre class="r"><code>rank(c (3, 1, 2, 5, 4, 2))</code></pre>
+<pre><code>## [1] 4.0 1.0 2.5 6.0 5.0 2.5</code></pre>
+<pre class="r"><code>c(3, 1, 2, 5, 4, 2)[order(c (3, 1, 2, 5, 4, 2))]</code></pre>
+<pre><code>## [1] 1 2 2 3 4 5</code></pre>
+<pre class="r"><code>order(c (3, 1, 2, 5, 4, 2))</code></pre>
+<pre><code>## [1] 2 3 6 1 5 4</code></pre>
+<pre class="r"><code>x &lt;- 0
+if (x &lt; 0) {
+print(&quot;Negative number&quot;)
+} else if (x &gt; 0) {
+print(&quot;Positive number&quot;)
+} else
+print(&quot;Zero&quot;)</code></pre>
+<pre><code>## [1] &quot;Zero&quot;</code></pre>
 </div>
 </div>
 </div>
