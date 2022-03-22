@@ -197,7 +197,6 @@ print("Zero")
 ```
 
 ```{r}
-install.packages(latticeExtra)
 library(latticeExtra)
  
 # create data
