@@ -135,7 +135,7 @@ system.time(for (i in 1:length(x)){
 ```
 
     ##    user  system elapsed 
-    ##   0.033   0.002   0.035
+    ##   0.036   0.002   0.039
 
 ``` r
 z 
@@ -153,7 +153,7 @@ system.time(for (i in seq_along(x)) {
 ```
 
     ##    user  system elapsed 
-    ##   0.006   0.001   0.006
+    ##   0.005   0.000   0.005
 
 ``` r
 z 
@@ -171,7 +171,7 @@ system.time(for (i in range(x)) {
 ```
 
     ##    user  system elapsed 
-    ##   0.006   0.000   0.007
+    ##   0.009   0.000   0.010
 
 ``` r
 z 
@@ -189,7 +189,7 @@ system.time(for (i in 1:length(x)){
 ```
 
     ##    user  system elapsed 
-    ##   0.009   0.000   0.009
+    ##   0.006   0.000   0.006
 
 ``` r
 z
@@ -207,7 +207,7 @@ system.time(for (i in 1:length(x)){
 ```
 
     ##    user  system elapsed 
-    ##   0.010   0.001   0.011
+    ##   0.005   0.000   0.005
 
 ``` r
 z
@@ -263,13 +263,13 @@ while (x < 2) {
 print(x)
 ```
 
-    ## [1] 2.115701
+    ## [1] 2.30168
 
 ``` r
 print(i)
 ```
 
-    ## [1] 3
+    ## [1] 144
 
 ``` r
 sort(c (3, 1, 2, 5, 4, 2), decreasing = FALSE)
@@ -312,3 +312,68 @@ print("Zero")
 ```
 
     ## [1] "Zero"
+
+``` r
+library(latticeExtra)
+```
+
+    ## Loading required package: lattice
+
+``` r
+# create data
+set.seed(1)
+x <- 1:100
+var1 <- cumsum(rnorm(100))
+var2 <- var1^2
+data <- data.frame(x,var1,var2)
+ 
+ 
+# usual line chart
+xyplot(var1 + var2 ~ x, data, type = "l", col=c("steelblue", "#69b3a2") , lwd=2)
+```
+
+![](NTRES6100_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+``` r
+#library
+library(latticeExtra)
+ 
+# create data
+set.seed(1)
+x <- 1:100
+var1 <- cumsum(rnorm(100))
+var2 <- var1^2
+data <- data.frame(x,var1,var2)
+ 
+ 
+# --> construct separate plots for each series
+obj1 <- xyplot(var1 ~ x, data, type = "l" , lwd=2, col="steelblue")
+obj2 <- xyplot(var2 ~ x, data, type = "l", lwd=2, col="#69b3a2")
+ 
+# --> Make the plot with second y axis:
+doubleYScale(obj1, obj2, add.ylab2 = TRUE, use.style=FALSE )
+```
+
+![](NTRES6100_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+``` r
+#library
+library(latticeExtra)
+ 
+# create data
+set.seed(1)
+x <- 1:100
+var1 <- cumsum(rnorm(100))
+var2 <- var1^2
+data <- data.frame(x,var1,var2)
+ 
+ 
+# --> construct separate plots for each series
+obj1 <- xyplot(var1 ~ x, data, type = "l" , lwd=2)
+obj2 <- xyplot(var2 ~ x, data, type = "l", lwd=2)
+ 
+# --> Make the plot with second y axis AND legend:
+doubleYScale(obj1, obj2, text = c("obj1", "obj2") , add.ylab2 = TRUE)
+```
+
+![](NTRES6100_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
