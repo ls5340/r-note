@@ -84,6 +84,8 @@ NTRES6100
 
 ### lufthansa
 
+# range
+
 ``` r
 # range in R
 x=c(5,2,7,9,4)
@@ -135,7 +137,7 @@ system.time(for (i in 1:length(x)){
 ```
 
     ##    user  system elapsed 
-    ##   0.036   0.002   0.039
+    ##   0.045   0.003   0.056
 
 ``` r
 z 
@@ -153,7 +155,7 @@ system.time(for (i in seq_along(x)) {
 ```
 
     ##    user  system elapsed 
-    ##   0.005   0.000   0.005
+    ##   0.007   0.000   0.008
 
 ``` r
 z 
@@ -171,7 +173,7 @@ system.time(for (i in range(x)) {
 ```
 
     ##    user  system elapsed 
-    ##   0.009   0.000   0.010
+    ##   0.005   0.000   0.007
 
 ``` r
 z 
@@ -189,7 +191,7 @@ system.time(for (i in 1:length(x)){
 ```
 
     ##    user  system elapsed 
-    ##   0.006   0.000   0.006
+    ##   0.008   0.000   0.013
 
 ``` r
 z
@@ -207,13 +209,15 @@ system.time(for (i in 1:length(x)){
 ```
 
     ##    user  system elapsed 
-    ##   0.005   0.000   0.005
+    ##   0.009   0.001   0.023
 
 ``` r
 z
 ```
 
     ##  [1] 12 14 16 18 20 22 24 26 28 30
+
+# for loop & while loop
 
 ``` r
 #certain
@@ -263,13 +267,15 @@ while (x < 2) {
 print(x)
 ```
 
-    ## [1] 2.30168
+    ## [1] 3.27889
 
 ``` r
 print(i)
 ```
 
-    ## [1] 144
+    ## [1] 20
+
+# order
 
 ``` r
 sort(c (3, 1, 2, 5, 4, 2), decreasing = FALSE)
@@ -301,6 +307,8 @@ order(c (3, 1, 2, 5, 4, 2))
 
     ## [1] 2 3 6 1 5 4
 
+# if-else
+
 ``` r
 x <- 0
 if (x < 0) {
@@ -312,6 +320,39 @@ print("Zero")
 ```
 
     ## [1] "Zero"
+
+``` r
+f_to_c_message <- function(F) {
+C <- (F - 32) * 5 / 9
+if (C < -20) {
+  print("Don’t bother going out.")
+}
+else if (C > 30) {
+  print("I'm moving back to Canada.")
+} 
+else {
+  print(C)
+}
+}
+
+f_to_c_message(-10)
+```
+
+    ## [1] "Don’t bother going out."
+
+``` r
+f_to_c_message(60)
+```
+
+    ## [1] 15.55556
+
+``` r
+f_to_c_message(90)
+```
+
+    ## [1] "I'm moving back to Canada."
+
+# dual axis
 
 ``` r
 library(latticeExtra)
@@ -332,7 +373,7 @@ data <- data.frame(x,var1,var2)
 xyplot(var1 + var2 ~ x, data, type = "l", col=c("steelblue", "#69b3a2") , lwd=2)
 ```
 
-![](NTRES6100_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](NTRES6100_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ``` r
 #library
@@ -354,7 +395,7 @@ obj2 <- xyplot(var2 ~ x, data, type = "l", lwd=2, col="#69b3a2")
 doubleYScale(obj1, obj2, add.ylab2 = TRUE, use.style=FALSE )
 ```
 
-![](NTRES6100_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](NTRES6100_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 ``` r
 #library
@@ -376,4 +417,4 @@ obj2 <- xyplot(var2 ~ x, data, type = "l", lwd=2)
 doubleYScale(obj1, obj2, text = c("obj1", "obj2") , add.ylab2 = TRUE)
 ```
 
-![](NTRES6100_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](NTRES6100_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
